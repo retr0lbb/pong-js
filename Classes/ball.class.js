@@ -1,12 +1,12 @@
 class Ball{
 
     position={
-        x: 0,
-        y: 0
+        x: 500,
+        y: 500
     }
     velocity = {
-        x:0,
-        y:0
+        x:-1,
+        y:-1
     }
     constructor(color, radius, ctx){
         this.color = color

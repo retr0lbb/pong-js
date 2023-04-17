@@ -1,24 +1,48 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import Ball from "./Classes/ball.class"
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const canva = document.querySelector("#canvas")
+const ctx = canva.getContext('2d')
 
-setupCounter(document.querySelector('#counter'))
+console.log(ctx)
+
+
+canva.width = 1024
+canva.height = 576
+ctx.fillStyle = 'black'
+ctx.fillRect(0,0, canvas.width, canvas.height)
+
+const ball = new Ball('rgb(255,255,255)', 15, ctx)
+
+
+ball.velocity.x =2
+ball.velocity.y =1
+function animate(){
+  requestAnimationFrame(animate)
+  refresh()
+  ballColider()
+  ball.move()
+  ball.draw(ctx)
+}
+animate()
+
+
+function refresh(){
+ctx.fillStyle = 'black'
+ctx.fillRect(0,0, canva.width, canva.height)
+}
+
+function ballColider(){
+  if(ball.position.x + ball.radius >canva.width || ball.position.x < canva.width - canva.width ){
+    ball.velocity.x = ball.velocity.x *-1
+    ball.color = `rgb(${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)})`
+
+  }else if(ball.position.y < canva.height -canva.height || ball.position.y + ball.radius> canva.height){
+    ball.velocity.y = ball.velocity.y *-1
+    ball.color = `rgb(${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)}, ${Math.floor(Math.random() *255)})`
+
+  }
+}
+
+function randomNumber(){
+  
+}
